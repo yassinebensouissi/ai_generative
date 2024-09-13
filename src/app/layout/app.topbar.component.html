@@ -1,0 +1,49 @@
+<div class="layout-topbar">
+    <style>
+        .tooltip {
+            background-color: black;
+            color: white; 
+            padding: 5px; 
+            border-radius: 3px; 
+            font-size: 12px; 
+            position: absolute; 
+            z-index: 1; 
+            display: none; 
+        }
+        i:hover .tooltip {
+            display: block; 
+        }
+    </style>
+    
+    <a class="layout-topbar-logo" routerLink="">
+        <img src="assets/layout/images/logo-Hydatis.png" alt="logo">
+    </a>
+
+    <button #menubutton class="p-link layout-menu-button layout-topbar-button" (click)="layoutService.onMenuToggle()">
+        <i class="pi pi-bars"></i>
+    </button>
+
+    <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button" (click)="layoutService.showProfileSidebar()">
+        <i class="pi pi-ellipsis-v"></i>
+    </button>
+
+    <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+
+        <!-- Nouveaux éléments ajoutés avec leurs libellés et icônes -->
+        <button class="p-link layout-topbar-button" routerLink="/uikit/list">
+            <i class="pi pi-chart-bar"><span class="tooltip">Startups</span></i>
+        </button>
+        <button class="p-link layout-topbar-button" routerLink="/uikit/floatlabel">
+            <i class="pi pi-desktop"><span class="tooltip">Éditeurs de logiciels</span></i>
+        </button>
+        <button class="p-link layout-topbar-button" routerLink="/uikit/input">
+            <i class="pi pi-search-plus"><span class="tooltip">Appels d'Offres</span></i>
+        </button>
+        <button class="p-link layout-topbar-button">
+            <i class="pi pi-user"><span class="tooltip">Profil</span></i>
+        </button>
+        <!--<button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
+            <i class="pi pi-cog"><span class="tooltip">Paramètres</span></i>
+        </button>-->
+    </div>
+</div>

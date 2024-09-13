@@ -1,0 +1,104 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <h5>Appels d'Offres</h5>
+
+            <p-dataView #dv [value]="filteredStartups" [paginator]="true" [rows]="9" filterBy="description" [sortField]="sortField" [sortOrder]="sortOrder" layout="grid">
+                <ng-template pTemplate="header">
+                    <div class="grid grid-nogutter flex-column md:flex-row justify-content-between">
+                        <span class="p-input-icon-left mb-2 md:mb-0">
+                            <i class="pi pi-search"></i>
+                            <input type="search" pInputText placeholder="Search by Description" (input)="onFilter(dv, $event)">
+                        </span>
+                            <p-dropdown [options]="countryOptions" placeholder="Filter by Country" (onChange)="onCountryChange($event)"></p-dropdown>
+
+                        <div class="flex items-center">
+                            <!--<button class="color-btn-load" (click)="importStartupData()">
+                                <i class="pi pi-cloud-download"></i>
+                            </button>-->
+                            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-appeloffre pTemplate="listItem">
+                    <div class="col-12">
+                        <div class="flex flex-column md:flex-row align-items-center p-3 w-full">
+                            <img [src]="'../../../../../assets/layout/images/appel_offre.jpg'" [alt]="appeloffre.description" class="img-layout"/>
+                            <div class="flex-1 text-center md:text-left" style="margin-left: 12px;">
+                                <div class="font-bold text-l">{{appeloffre.description}}</div><br>
+                                <div class="mb-3" *ngIf="appeloffre.posted">Posted: {{appeloffre.posted}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.deadline">Deadline: {{appeloffre.deadline}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.procurement">Procurement: {{appeloffre.procurement}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.reference">Reference Number: {{appeloffre.reference}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.undp">UNDP Office: {{appeloffre.undp}}</div>
+
+                            </div>
+                            <div class="flex flex-row md:flex-column justify-content-between w-full md:w-auto align-items-center md:align-items-end mt-5 md:mt-0">
+                                <ng-container *ngIf="appeloffre.link !== 'NOT FOUND'">
+                                    <a href="{{appeloffre.link}}" class="color-button" target="_blank">Site Web</a>
+                                </ng-container>
+                                <ng-container *ngIf="appeloffre.link === 'NOT FOUND'">
+                                    <span class="color-button">Site Web</span>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+
+                <ng-template let-appeloffre pTemplate="gridItem">
+                    <div class="col-12 md:col-4">
+                        <div class="card m-3 border-1 surface-border">
+                            <div class="text-center">
+                                <a href="{{appeloffre.link}}" target="_blank">
+                                    <img [src]="'../../../../../assets/layout/images/appel_offre.jpg'" [alt]="appeloffre.description" class="w-9 shadow-2 my-3 mx-0"/>
+                                </a><br>
+                                <div class="text-l font-bold">
+                                    {{ appeloffre.description.length > 41 ? (appeloffre.description | slice:0:41) + '...' : appeloffre.description }}
+                                </div><br>
+                                <div class="mb-3" *ngIf="appeloffre.country">Country: {{appeloffre.country}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.posted">Posted: {{appeloffre.posted}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.deadline">Deadline: {{appeloffre.deadline}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.procurement">Procurement: {{appeloffre.procurement}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.reference">Reference Number: {{appeloffre.reference}}</div>
+                                <div class="mb-3" *ngIf="appeloffre.undp">UNDP Office: {{appeloffre.undp}}</div>
+
+                                <ng-container *ngIf="appeloffre.link !== 'NOT FOUND'">
+                                    <br>
+                                    <a href="{{appeloffre.link}}" class="color-button" target="_blank">Consulter</a>
+                                </ng-container>
+
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dataView>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .color-button {
+        background-color: #ec642a;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .color-btn-load {
+        background-color: #ec642a;
+        color: white;
+        border: none;
+        border-radius: 100px;
+        cursor: pointer;
+        width: 35px;
+        height: 35px;
+        margin-right: 10px;
+    }
+    .img-layout{
+        width: 120px;
+        height: 100px;
+    }
+</style>
