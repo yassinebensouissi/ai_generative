@@ -72,4 +72,4 @@ primereact/resources/themes/luna-green/theme.css
 primereact/resources/themes/luna-pink/theme.css
 primereact/resources/themes/rhea/theme.css
 ```
- 
+ # ai_generative
