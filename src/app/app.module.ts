@@ -11,8 +11,9 @@ import { EventService } from './demo/service/event.service';
 import { IconService } from './demo/service/icon.service';
 import { NodeService } from './demo/service/node.service';
 import { PhotoService } from './demo/service/photo.service';
+import { HttpClientModule } from '@angular/common/http';
 
-//New TODO mydasboard
+// New TODO my dashboard
 import { MydashboardComponent } from './demo/components/mydashboard/mydashboard.component';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
@@ -24,15 +25,31 @@ import { MultiSelectModule } from 'primeng/multiselect';
 import { DropdownModule } from 'primeng/dropdown';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ToastModule } from 'primeng/toast';
+import { MatDialogModule } from '@angular/material/dialog';
 import { SliderModule } from 'primeng/slider';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { DialogModule } from 'primeng/dialog';
+import { BrowserModule } from '@angular/platform-browser';
+import { DialogTestComponent } from './dialog-test/dialog-test.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TermsDialogComponent } from './terms-dialog/terms-dialog.component';
+import { EyeMovementComponent } from './eye-movement/eye-movement.component';
 
 @NgModule({
     declarations: [
-        AppComponent, NotfoundComponent, MydashboardComponent
+        AppComponent,
+        NotfoundComponent,
+        MydashboardComponent,
+        ImageUploadComponent,
+        DialogTestComponent,
+        TermsDialogComponent,
+        EyeMovementComponent // Ensure this is declared
     ],
     imports: [
+        BrowserModule,
+        HttpClientModule,
         AppRoutingModule,
         AppLayoutModule,
         TableModule,
@@ -47,12 +64,20 @@ import { FormsModule } from '@angular/forms';
         DropdownModule,
         ProgressBarModule,
         ToastModule,
-        FormsModule
+        FormsModule,
+        DialogModule,
+        BrowserAnimationsModule, // Required for animations in dialogs
+        MatDialogModule // Required for Material dialogs
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        CountryService, CustomerService, EventService, IconService, NodeService,
-        PhotoService, ProductService
+        CountryService,
+        CustomerService,
+        EventService,
+        IconService,
+        NodeService,
+        PhotoService,
+        ProductService
     ],
     bootstrap: [AppComponent]
 })

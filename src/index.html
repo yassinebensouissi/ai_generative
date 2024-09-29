@@ -36,31 +36,29 @@
     </style>
     <link rel="icon" type="image/x-icon" href="favicon.ico">
 
-    <!-- <link id="theme-css" rel="stylesheet" type="text/css" href="assets/layout/styles/theme/lara-light-indigo/theme.css"> -->
-
     <link id="theme-css" rel="stylesheet" type="text/css" href="assets/layout/styles/theme/mdc-light-deeppurple/theme.css">
     <script src="assets/custom-script.js" defer></script>
     <script src="node_modules/tesseract.js/dist/tesseract.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v2.1.4/dist/tesseract.min.js"></script>
-
     <script src="https://code.responsivevoice.org/responsivevoice.js?key=s3nt8S1F"></script>
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+
     <script>
         function getSelectionText() {
             var text = "";
             if (window.getSelection) {
                 text = window.getSelection().toString();
-                // for Internet Explorer 8 and below. For Blogger, you should use && instead of &&.
             } else if (document.selection && document.selection.type != "Control") {
                 text = document.selection.createRange().text;
             }
             return text;
         }
-        $(document).ready(function (){ // when the document has completed loading
-            $(document).mouseup(function (e){ // attach the mouseup event for all div and pre tags
-                setTimeout(function() { // When clicking on a highlighted area, the value stays highlighted until after the mouseup event, and would therefore stil be captured by getSelection. This micro-timeout solves the issue.
-                    responsiveVoice.cancel(); // stop anything currently being spoken
-                    responsiveVoice.speak(getSelectionText()); //speak the text as returned by getSelectionText
+
+        $(document).ready(function () {
+            $(document).mouseup(function () {
+                setTimeout(function() {
+                    responsiveVoice.cancel();
+                    responsiveVoice.speak(getSelectionText());
                 }, 1);
             });
         });
@@ -78,12 +76,11 @@
                 .join('');
 
             if (e.results[0].isFinal) {
-                if (transcript.includes('start')) {
+                if (transcript.toLowerCase().includes('start')) {
                     document.getElementById('startBtn').click();
-                } else if (transcript.includes('convert images')) {
+                } else if (transcript.toLowerCase().includes('convert images')) {
                     performOCROnAllImages();
                 }
-                // Add more commands as needed
             }
         });
 
@@ -103,11 +100,9 @@
                 }
             });
         }
-    </script>
 
-    <!-- UserWay Accessibility Widget -->
-    <script>
-        (function(d){
+        // UserWay Accessibility Widget
+        (function(d) {
             var s = d.createElement("script");
             s.setAttribute("data-account", "YOUR_ACCOUNT_ID");
             s.setAttribute("src", "https://cdn.userway.org/widget.js");
@@ -122,19 +117,18 @@
                 "tooltips": true
             }));
             (d.body || d.head).appendChild(s);
-        })(document)
+        })(document);
     </script>
-    <!-- End of UserWay Accessibility Widget -->
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
-<body>
-
+<body class="mat-typography">
 <app-root></app-root>
 <button id="startBtn">Start</button>
-
 <pre id="output"></pre>
-
 </body>
 
 </html>

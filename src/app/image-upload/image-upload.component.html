@@ -1,0 +1,16 @@
+<div>
+    <h1>Eye Tracking System</h1>
+    <button (click)="openCamera()">Open Camera</button>
+
+    <div *ngIf="eyeMovementActive">
+        <video #videoElement width="640" height="480" autoplay></video>
+        <canvas #canvasElement width="640" height="480"></canvas>
+
+
+        <canvas #canvasElement style="display:none;"></canvas>
+        <div id="prediction" style="position: absolute; bottom: 10px; left: 10px; color: white; background: rgba(0, 0, 0, 0.7); padding: 10px; border-radius: 5px;">
+            <h3 id="handicap-label">Handicap: N/A</h3>
+            <p id="handicap-confidence">Confidence: N/A</p>
+        </div>
+    </div>
+</div>

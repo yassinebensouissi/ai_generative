@@ -1,0 +1,29 @@
+<button pButton label="Show Terms" (click)="showTermsDialog()" class="p-button-info"></button>
+
+<p-dialog
+    [(visible)]="displayTermsDialog"
+    [modal]="true"
+    header="Terms and Conditions"
+    [closable]="false"
+    [draggable]="false"
+    [resizable]="false"
+    contentStyle="text-align: center; font-size: 16px; padding: 20px;"
+    styleClass="custom-dialog">
+
+    <p>By clicking "I Agree", you acknowledge that your camera will be opened and used for predictions.</p>
+    <p>Your data will not be stored or shared without your consent.</p>
+
+    <div class="p-d-flex p-jc-end p-mt-3">
+        <button
+            pButton
+            label="I Agree"
+            (click)="onAgree()"
+            class="p-button-success custom-terms-button"></button>
+        <button
+            pButton
+            label="I Disagree"
+            (click)="onDisagree()"
+            class="p-button-danger custom-terms-button"
+            style="margin-left:10px;"></button>
+    </div>
+</p-dialog>

@@ -14,3 +14,64 @@ $gutter: 1rem; //for primeflex grid system
 /* Demos */
 @import "assets/demo/styles/flags/flags.css";
 @import "assets/demo/styles/badges.scss";
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Custom dialog styling */
+.custom-dialog {
+    max-width: 500px;
+    width: 90%;
+    background-color: #f9f9f9; // Adjust background color
+    border-radius: 8px; // Rounded corners
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Shadow for a modern look
+}
+
+.custom-dialog .p-dialog-header {
+    background-color: #007ad9; // Matches your website's primary color
+    color: white;
+    font-weight: bold;
+    padding: 1rem;
+}
+
+.custom-dialog .p-dialog-content {
+    font-family: 'Roboto', sans-serif;
+    color: #333; // Text color
+}
+
+.custom-dialog .p-dialog-content p {
+    margin-bottom: 1rem;
+    line-height: 1.6;
+}
+
+.custom-terms-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 5px; // Slightly rounded buttons
+}
+
+.custom-terms-button.p-button-success {
+    background-color: #28a745; // Success green
+    border: none;
+}
+
+.custom-terms-button.p-button-danger {
+    background-color: #dc3545; // Danger red
+    border: none;
+}
+
+/* Optional: Add responsiveness */
+@media screen and (max-width: 768px) {
+    .custom-dialog {
+        width: 100%;
+    }
+    .custom-dialog .p-dialog-content {
+        font-size: 14px;
+    }
+}
+
+/* Add this to your component's CSS file */
+.highlight {
+    outline: 2px solid blue; /* Change color as needed */
+    transition: outline 0.3s ease;
+}
+

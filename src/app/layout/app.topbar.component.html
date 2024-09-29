@@ -2,19 +2,24 @@
     <style>
         .tooltip {
             background-color: black;
-            color: white; 
-            padding: 5px; 
-            border-radius: 3px; 
-            font-size: 12px; 
-            position: absolute; 
-            z-index: 1; 
-            display: none; 
+            color: white;
+            padding: 5px;
+            border-radius: 3px;
+            font-size: 12px;
+            position: absolute;
+            z-index: 1;
+            display: none;
         }
         i:hover .tooltip {
-            display: block; 
+            display: block;
+        }
+        .blue-text {
+            color: blue; /* Text color for Move to PABS */
+            font-weight: bold; /* Optional: Make the text bold */
         }
     </style>
-    
+
+    <!-- Move to PABS Logo -->
     <a class="layout-topbar-logo" routerLink="">
         <img src="assets/layout/images/logo-Hydatis.png" alt="logo">
     </a>
@@ -28,8 +33,14 @@
     </button>
 
     <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': layoutService.state.profileSidebarVisible}">
+        <!-- Button to open terms dialog before camera -->
+        <button class="p-link layout-topbar-button" (click)="openTermsDialog()">
+            <i class="pi pi-cog"></i> <!-- Settings icon for mode change -->
+            <span class="blue-text">Move to PABS</span> <!-- Optional text for the button -->
+        </button>
 
-        <!-- Nouveaux éléments ajoutés avec leurs libellés et icônes -->
+
+        <!-- Existing buttons with their icons -->
         <button class="p-link layout-topbar-button" routerLink="/uikit/list">
             <i class="pi pi-chart-bar"><span class="tooltip">Startups</span></i>
         </button>
@@ -42,8 +53,5 @@
         <button class="p-link layout-topbar-button">
             <i class="pi pi-user"><span class="tooltip">Profil</span></i>
         </button>
-        <!--<button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
-            <i class="pi pi-cog"><span class="tooltip">Paramètres</span></i>
-        </button>-->
     </div>
 </div>

@@ -17,8 +17,9 @@
         "importHelpers": true,
         "target": "es2017",
         "module": "es2020",
+        "types": ["jest"],
         "lib": [
-            "es2020",
+            "es6",
             "dom"
         ]
     },
