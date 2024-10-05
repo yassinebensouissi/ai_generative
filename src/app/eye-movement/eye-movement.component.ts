@@ -39,32 +39,25 @@ export class EyeMovementComponent implements OnInit, OnDestroy {
         const displaySize = { width: this.videoElement.nativeElement.width, height: this.videoElement.nativeElement.height };
         faceapi.matchDimensions(canvas, displaySize);
 
-        setInterval(async () => {
+        this.eyeTrackingInterval = requestAnimationFrame(async () => {
             const detections = await faceapi.detectAllFaces(this.videoElement.nativeElement, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks();
             const resizedDetections = faceapi.resizeResults(detections, displaySize);
             canvas.getContext('2d')?.clearRect(0, 0, canvas.width, canvas.height);
             faceapi.draw.drawDetections(canvas, resizedDetections);
             faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
 
-            // Check if any face is detected
             if (detections.length > 0) {
                 const landmarks = detections[0].landmarks;
-
-                // Get eye positions (use the appropriate points from landmarks)
                 const leftEye = landmarks.getLeftEye();
                 const rightEye = landmarks.getRightEye();
-
-                // Calculate the average position of both eyes
                 const averageX = (leftEye[0].x + rightEye[0].x) / 2;
                 const averageY = (leftEye[0].y + rightEye[0].y) / 2;
 
-                const eyePosition = {
-                    x: averageX,
-                    y: averageY
-                };
-                this.moveCursor(eyePosition);
+                this.moveCursor({ x: averageX, y: averageY });
             }
-        }, 100); // Update every 100ms
+
+            this.eyeTrackingInterval = requestAnimationFrame(this.trackEyes.bind(this));
+        });
     }
 
     moveCursor(position: { x: number; y: number }) {
@@ -76,6 +69,6 @@ export class EyeMovementComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        clearInterval(this.eyeTrackingInterval);
+        cancelAnimationFrame(this.eyeTrackingInterval);
     }
 }

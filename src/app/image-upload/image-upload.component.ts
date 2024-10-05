@@ -96,9 +96,24 @@ export class ImageUploadComponent {
     }
 
     simulateNavigation(gaze: { screen_x: number; screen_y: number }) {
-        console.log(`Gaze coordinates - X: ${gaze.screen_x}, Y: ${gaze.screen_y}`);
-        this.checkGazeElement(gaze.screen_x, gaze.screen_y);
+        const element = document.elementFromPoint(gaze.screen_x, gaze.screen_y) as HTMLElement;
+
+        if (element) {
+            console.log(`Gaze detected on element: ${element.tagName}`);
+            element.classList.add('highlight');
+
+            clearTimeout(this.gazeHoldTimer);
+
+            // Highlight element and set gaze hold timer
+            this.gazeHoldTimer = setTimeout(() => {
+                element.click(); // Simulate click
+                console.log('Element clicked:', element);
+            }, 500); // Adjust duration based on user needs
+        } else {
+            console.warn('No element detected at gaze coordinates.');
+        }
     }
+
 
     checkGazeElement(screen_x: number, screen_y: number) {
         const element = document.elementFromPoint(screen_x, screen_y) as HTMLElement; // Cast to HTMLElement
